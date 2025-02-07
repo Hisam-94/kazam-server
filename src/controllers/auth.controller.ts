@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import User from '../models/user.model';
-import { registerSchema, loginSchema } from '../middlewares/validate';
-import jwt from 'jsonwebtoken';
+const User = require('../models/user.model');
+const { registerSchema, loginSchema } = require('../middlewares/validate');
+const jwt = require('jsonwebtoken');
 
 export const register = async (req: Request, res: Response) => {
   try {

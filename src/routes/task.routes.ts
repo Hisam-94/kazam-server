@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 import { auth } from '../middlewares/auth';
 import { 
   createTask, 
@@ -19,4 +19,4 @@ router.route('/:id')
   .put(updateTask)
   .delete(deleteTask);
 
-export default router;
+module.exports = router;

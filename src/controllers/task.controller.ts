@@ -9,7 +9,7 @@ export const createTask = async (req: Request, res: Response) => {
 
     const task = await Task.create({ 
       ...req.body,
-      user: req.user.id
+      user: req?.user?.id
     });
     
     res.status(201).send(task);
@@ -20,7 +20,7 @@ export const createTask = async (req: Request, res: Response) => {
 
 export const getTasks = async (req: Request, res: Response) => {
   try {
-    const tasks = await Task.find({ user: req.user.id });
+    const tasks = await Task.find({ user: req?.user?.id });
     res.send(tasks);
   } catch (error) {
     res.status(500).send({ message: 'Server error' });
@@ -30,7 +30,7 @@ export const getTasks = async (req: Request, res: Response) => {
 export const updateTask = async (req: Request, res: Response) => {
   try {
     const task = await Task.findOneAndUpdate(
-      { _id: req.params.id, user: req.user.id },
+      { _id: req.params.id, user: req?.user?.id },
       req.body,
       { new: true }
     );
@@ -46,7 +46,7 @@ export const deleteTask = async (req: Request, res: Response) => {
   try {
     const task = await Task.findOneAndDelete({ 
       _id: req.params.id, 
-      user: req.user.id 
+      user: req?.user?.id 
     });
     
     if (!task) return res.status(404).send({ message: 'Task not found' });
