@@ -34,6 +34,8 @@ app.use((err: typeof ApiError, _req: Request, res: Response, _next: NextFunction
   res.status(500).json({ message: 'Internal server error' });
 });
 
+app.get("/", (_req:Request, res:Response) => res.send("Server is up and running!"));
+
 const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
